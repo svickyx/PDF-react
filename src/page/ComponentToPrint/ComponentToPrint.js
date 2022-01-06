@@ -46,7 +46,6 @@ const PhotoDiv = ({ title, imagesUrl, date, note, number }) => {
         flexDirection: "row",
         borderTop: BORDER_COLOR,
         flex: 1,
-        width: "65%",
       }}
     >
       <View
@@ -57,6 +56,7 @@ const PhotoDiv = ({ title, imagesUrl, date, note, number }) => {
           flexDirection: "row",
           alignItems: "center",
           padding: "2%",
+          width: "65%",
         }}
       >
         <Image style={{ objectFit: "contain" }} src={imagesUrl} />
