@@ -1,0 +1,22 @@
+h3 {
+  margin-top: 0;
+}
+
+.page-container {
+  background-color: #efefef;
+  padding-top: 30px;
+}
+
+.title-container {
+  text-align: center;
+}
+
+.preview-div {
+  text-align: center;
+}
+
+.preview-btn {
+  width: 100px;
+  cursor: pointer;
+  padding: 8px 12px;
+}

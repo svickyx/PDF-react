@@ -1,0 +1,22 @@
+.uploader {
+  width: 95%;
+  height: 400px;
+  background-color: #efefef;
+  border-radius: 10px;
+  text-align: center;
+  cursor: pointer;
+}
+.upload-btn-container {
+  margin-top: 50%;
+}
+
+.upload-btn {
+  width: 30px;
+  height: 30px;
+}
+
+@media screen and (min-width: 700px) {
+  .uploader {
+    width: 45%;
+  }
+}
