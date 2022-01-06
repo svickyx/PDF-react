@@ -12,6 +12,9 @@ module.exports = {
           buffer: require.resolve("buffer"),
           asset: require.resolve("assert"),
         },
+        alias: {
+          path: require.resolve("path-browserify"),
+        },
       },
       plugins: [
         new webpack.ProvidePlugin({

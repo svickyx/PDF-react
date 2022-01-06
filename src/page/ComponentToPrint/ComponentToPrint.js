@@ -46,6 +46,7 @@ const PhotoDiv = ({ title, imagesUrl, date, note, number }) => {
         flexDirection: "row",
         borderTop: BORDER_COLOR,
         flex: 1,
+        width: "65%",
       }}
     >
       <View
