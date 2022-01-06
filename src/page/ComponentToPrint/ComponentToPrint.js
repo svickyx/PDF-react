@@ -50,7 +50,6 @@ const PhotoDiv = ({ title, imagesUrl, date, note, number }) => {
     >
       <View
         style={{
-          flex: 1,
           borderRight: BORDER_COLOR,
           display: "flex",
           flexDirection: "row",
@@ -63,7 +62,6 @@ const PhotoDiv = ({ title, imagesUrl, date, note, number }) => {
       </View>
       <View
         style={{
-          flex: 1,
           display: "flex",
           flexDirection: "column",
           alignItems: "flex-start",
