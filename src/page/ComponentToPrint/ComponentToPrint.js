@@ -19,23 +19,25 @@ Font.register({
 
 //create style
 const styles = StyleSheet.create({
-  document: {
-    "@media max-width: 400": {
-      width: "50%",
-      height: "50%",
-    },
-  },
   page: {
-    padding: "10%",
+    width: "100%",
+    paddingLeft: "10%",
+    paddingRight: "10%",
+    paddingTop: "5%",
+    paddingTop: "5%",
     display: "flex",
     flexDirection: "column",
     fontFamily: "cwTeXKai-zhonly",
-    fontSize: 16,
+    fontSize: 12,
+    letterSpacing: 1.5,
   },
   bigTitle: { textAlign: "center" },
+  projectName: { fontSize: 14, marginBottom: "2%", textAlign: "left" },
+  projectContentText: { textAlign: "left", height: "100%" },
+  projectDescription: { width: "100%", height: "30%", padding: "1%" },
 });
 
-const BORDER_COLOR = "1 solid gray";
+const BORDER_COLOR = "1 solid black";
 
 // create one photo div
 const PhotoDiv = ({ title, imagesUrl, date, note, number }) => {
@@ -53,6 +55,7 @@ const PhotoDiv = ({ title, imagesUrl, date, note, number }) => {
           borderRight: BORDER_COLOR,
           display: "flex",
           flexDirection: "row",
+          justifyContent: "center",
           alignItems: "center",
           padding: "2%",
           width: "65%",
@@ -65,14 +68,43 @@ const PhotoDiv = ({ title, imagesUrl, date, note, number }) => {
           display: "flex",
           flexDirection: "column",
           alignItems: "flex-start",
-          justifyContent: "center",
-          padding: "2%",
+          justifyContent: "flex-start",
+          width: "35%",
         }}
       >
-        <Text>日期: {date}</Text>
-        <Text>標題: {title}</Text>
-        <Text>契約項次: {number}</Text>
-        <Text>說明: {note}</Text>
+        <View
+          style={{
+            borderBottom: BORDER_COLOR,
+            width: "100%",
+            height: "15%",
+            padding: "1%",
+          }}
+        >
+          <Text style={styles.projectContentText}>拍攝日期: {date}</Text>
+        </View>
+        <View
+          style={{
+            borderBottom: BORDER_COLOR,
+            width: "100%",
+            height: "15%",
+            padding: "1%",
+          }}
+        >
+          <Text style={styles.projectContentText}>契約項次: {number}</Text>
+        </View>
+        <View
+          style={{
+            borderBottom: BORDER_COLOR,
+            width: "100%",
+            height: "30%",
+            padding: "1%",
+          }}
+        >
+          <Text style={styles.projectContentText}>工程項目: {title}</Text>
+        </View>
+        <View style={styles.projectDescription}>
+          <Text style={styles.projectContentText}>說明: {note}</Text>
+        </View>
       </View>
     </View>
   );
@@ -81,22 +113,35 @@ const PhotoDiv = ({ title, imagesUrl, date, note, number }) => {
 // Create Document Component
 const ComponentToPrint = ({ imagesUrls, completedDescriptions }) => {
   return (
-    <Document style={styles.document}>
+    <Document file="image.pdf">
       <Page size="A4" style={styles.page}>
-        <View style={{ paddingBottom: "5%" }}>
+        <View style={{ marginBottom: "2%" }}>
           <Text
             style={{
               textAlign: "center",
-              paddingBottom: "2%",
-              fontSize: 20,
+              marginBottom: "3%",
+              fontSize: 30,
+              textAlign: "left",
             }}
           >
-            竣工照片
+            施工照片
           </Text>
-          <Text style={{ fontSize: 16 }}>
-            工程名稱:教學區週邊排水溝及運動場東側通道連鎖磚改善工程
+          <Text style={styles.projectName}>
+            工程名稱 : 教學區週邊排水溝及運動場東側通道連鎖磚改善工程
           </Text>
-          <Text style={{ fontSize: 16 }}>施工廠商:和諅營造股份有限公司</Text>
+          <Text style={styles.projectName}>監造單位 : 律師事務所</Text>
+          <View
+            style={{
+              display: "inline-flex",
+              flexDirection: "row",
+              justifyContent: "space-between",
+            }}
+          >
+            <Text style={{ fontSize: 14, textAlign: "left" }}>
+              施工承商 : 和碁營造股份有限公司
+            </Text>
+            <Text style={{ fontSize: 14 }}>第一頁</Text>
+          </View>
         </View>
         <View
           style={{

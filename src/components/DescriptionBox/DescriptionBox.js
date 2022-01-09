@@ -38,7 +38,7 @@ const DescriptionBox = ({ handleDescription }) => {
         type="text"
         id="title"
         name="title"
-        placeholder="新增標題"
+        placeholder="工程項目"
         disabled={isCompleted}
         onChange={(e) => setTitle(e.target.value)}
         onFocus={() => setTitle("")}
@@ -49,7 +49,7 @@ const DescriptionBox = ({ handleDescription }) => {
         type="text"
         id="number"
         name="number"
-        placeholder="新增項次"
+        placeholder="契約項次"
         disabled={isCompleted}
         onChange={(e) => setNumber(e.target.value)}
         onFocus={() => setNumber("")}
@@ -60,7 +60,7 @@ const DescriptionBox = ({ handleDescription }) => {
         type="text"
         id="note"
         name="note"
-        placeholder="新增說明"
+        placeholder="說明"
         disabled={isCompleted}
         onChange={(e) => setNote(e.target.value)}
         onFocus={(e) => setNote("")}
