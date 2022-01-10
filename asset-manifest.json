@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/PDF-react/static/css/main.c71a8948.css",
-    "main.js": "/PDF-react/static/js/main.c2149336.js",
+    "main.css": "/PDF-react/static/css/main.e4f695db.css",
+    "main.js": "/PDF-react/static/js/main.46624401.js",
     "static/js/787.504fd595.chunk.js": "/PDF-react/static/js/787.504fd595.chunk.js",
     "static/media/cwTeXKai-zhonly.ttf": "/PDF-react/static/media/cwTeXKai-zhonly.be8e47c27de664a5ce53.ttf",
     "index.html": "/PDF-react/index.html",
     "static/media/circle-arrow-up-solid.svg": "/PDF-react/static/media/circle-arrow-up-solid.18d154f76273323fd1cb471b79942657.svg",
     "static/media/trash-solid.svg": "/PDF-react/static/media/trash-solid.1b40b326a0b456accd35e1b3e171f83c.svg",
-    "main.c71a8948.css.map": "/PDF-react/static/css/main.c71a8948.css.map",
-    "main.c2149336.js.map": "/PDF-react/static/js/main.c2149336.js.map",
+    "main.e4f695db.css.map": "/PDF-react/static/css/main.e4f695db.css.map",
+    "main.46624401.js.map": "/PDF-react/static/js/main.46624401.js.map",
     "787.504fd595.chunk.js.map": "/PDF-react/static/js/787.504fd595.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.c71a8948.css",
-    "static/js/main.c2149336.js"
+    "static/css/main.e4f695db.css",
+    "static/js/main.46624401.js"
   ]
 }
