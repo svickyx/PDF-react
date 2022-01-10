@@ -38,7 +38,7 @@ const DescriptionBox = ({ handleDescription }) => {
         type="text"
         id="title"
         name="title"
-        placeholder="工程項目"
+        placeholder="工程項目(不能超過56個字）"
         disabled={isCompleted}
         onChange={(e) => setTitle(e.target.value)}
         onFocus={() => setTitle("")}
@@ -60,7 +60,7 @@ const DescriptionBox = ({ handleDescription }) => {
         type="text"
         id="note"
         name="note"
-        placeholder="說明"
+        placeholder="說明(不能超過56個字）"
         disabled={isCompleted}
         onChange={(e) => setNote(e.target.value)}
         onFocus={() => setNote("")}
