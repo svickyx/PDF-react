@@ -1,0 +1,26 @@
+.block-container {
+  width: 80%;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+@media screen and (min-width: 700px) {
+  .block-container {
+    width: 70%;
+    flex-direction: row;
+    padding: 20px;
+    position: relative;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .block-container {
+    width: 50%;
+  }
+}
