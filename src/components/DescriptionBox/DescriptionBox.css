@@ -1,3 +1,7 @@
+hr {
+  border: none;
+}
+
 .description {
   display: flex;
   flex-direction: column;
