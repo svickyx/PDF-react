@@ -26,6 +26,7 @@ const divBy14 = (text) => {
   while (textArr.length >= 14) {
     newtextArr.push(textArr.splice(0, 14).join(""));
   }
+  newtextArr.push(textArr.splice(0, 14).join(""));
   return newtextArr;
 };
 
