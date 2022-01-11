@@ -133,7 +133,11 @@ const PhotoDiv = ({ title, imagesUrl, date, note, number }) => {
 };
 
 // Create Document Component
-const ComponentToPrint = ({ imagesUrls, completedDescriptions }) => {
+const ComponentToPrint = ({
+  projectInfo,
+  imagesUrls,
+  completedDescriptions,
+}) => {
   return (
     <Document file="image.pdf">
       <Page size="A4" style={styles.page}>
@@ -148,9 +152,11 @@ const ComponentToPrint = ({ imagesUrls, completedDescriptions }) => {
             施工照片
           </Text>
           <Text style={styles.projectName}>
-            工程名稱 : 教學區週邊排水溝及運動場東側通道連鎖磚改善工程
+            工程名稱 : {projectInfo.projectName}
           </Text>
-          <Text style={styles.projectName}>監造單位 : 律師事務所</Text>
+          <Text style={styles.projectName}>
+            監造單位 : {projectInfo.designer}
+          </Text>
           <View
             style={{
               display: "inline-flex",
