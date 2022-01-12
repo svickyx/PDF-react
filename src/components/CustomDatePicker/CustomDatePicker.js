@@ -5,15 +5,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import "./CustomDatePicker.css";
 
 const CustomDatePicker = ({ handleSelectedDate, isCompleted }) => {
-  const [startDate, setStartDate] = useState(new Date());
-
-  useEffect(() => {
-    const todayYear = startDate.getFullYear() - 1911;
-    const todayMonth = startDate.getMonth() + 1;
-    const today = startDate.getDate();
-    const todayDate = `${todayYear}.${todayMonth}.${today}`;
-    handleSelectedDate(todayDate);
-  }, []);
+  const [startDate, setStartDate] = useState();
 
   //update date if changes
   const handleDateChange = (date) => {

@@ -3,10 +3,10 @@ import CustomDatePicker from "../CustomDatePicker/CustomDatePicker";
 import "./DescriptionBox.css";
 
 const DescriptionBox = ({ handleDescription }) => {
-  const [chooseDate, setChooseDate] = useState();
-  const [title, setTitle] = useState();
-  const [number, setNumber] = useState();
-  const [note, setNote] = useState();
+  const [chooseDate, setChooseDate] = useState("");
+  const [title, setTitle] = useState("");
+  const [number, setNumber] = useState("");
+  const [note, setNote] = useState("");
   const [isCompleted, setIsCompleted] = useState(false);
 
   useEffect(() => {

@@ -1,13 +1,13 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import BlockContainer from "../../components/BlockContainer/BlockContainer";
-import { PDFDownloadLink, PDFViewer } from "@react-pdf/renderer";
-import { CSVLink, CSVDownload } from "react-csv";
+import { PDFDownloadLink } from "@react-pdf/renderer";
 import ComponentToPrint from "../ComponentToPrint/ComponentToPrint";
 import ProjectName from "../../components/ProjectName/ProjectName";
+import ComponentToExcel from "../ComponentToExcel/ComponentToExcel";
 
 import "./ComponentToEdit.css";
 
-const ComponentToShow = () => {
+const ComponentToEdit = () => {
   const [imagesUrls, setImagesUrls] = useState(() => Array(3).fill(null));
   const [completedDescriptions, setCompletedDescriptions] = useState(() =>
     Array(3).fill(null)
@@ -60,9 +60,18 @@ const ComponentToShow = () => {
             fileName="image.pdf"
           >
             {({ blob, url, loading, error }) =>
-              loading ? "加載中......" : <button>點擊這裡下載PDF</button>
+              loading ? (
+                "加載中......"
+              ) : (
+                <button style={{ padding: "5px 8px" }}>點擊這裡下載PDF</button>
+              )
             }
           </PDFDownloadLink>
+          <ComponentToExcel
+            projectInfo={projectInfo}
+            completedDescriptions={completedDescriptions}
+            imagesUrls={imagesUrls}
+          />
         </div>
       )}
       <ProjectName handleProjectInfo={(info) => handleProjectInfo(info)} />
@@ -79,4 +88,4 @@ const ComponentToShow = () => {
   );
 };
 
-export default ComponentToShow;
+export default ComponentToEdit;
