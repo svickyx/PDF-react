@@ -1,6 +1,5 @@
 import Excel from "exceljs";
-import { useState } from "react";
-import { useEffect } from "react/cjs/react.development";
+import { useState, useEffect } from "react";
 import format from "../../asset/format.xlsx";
 
 const ComponentToExcel = ({
