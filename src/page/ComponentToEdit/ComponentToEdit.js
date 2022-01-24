@@ -5,8 +5,6 @@ import ComponentToPrint from "../ComponentToPrint/ComponentToPrint";
 import ProjectName from "../../components/ProjectName/ProjectName";
 import ComponentToExcel from "../ComponentToExcel/ComponentToExcel";
 
-import "./ComponentToEdit.css";
-
 const ComponentToEdit = () => {
   const [imagesUrls, setImagesUrls] = useState(() => Array(3).fill(null));
   const [completedDescriptions, setCompletedDescriptions] = useState(() =>
@@ -45,7 +43,7 @@ const ComponentToEdit = () => {
   }, [completedDescriptions, projectInfo]);
 
   return (
-    <div className="page-container">
+    <div>
       <h3 style={{ textAlign: "center" }}>施工照片</h3>
       {isAllCompleted && (
         <div style={{ textAlign: "center" }}>
@@ -75,7 +73,7 @@ const ComponentToEdit = () => {
         </div>
       )}
       <ProjectName handleProjectInfo={(info) => handleProjectInfo(info)} />
-      <div className="body">
+      <div>
         {imagesUrls.map((_, i) => (
           <BlockContainer
             key={"block" + i}
