@@ -1,25 +1,17 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useContext } from "react";
+import { CardListContext } from "../../store/CardListContext";
 import CustomDatePicker from "../UI/CustomDatePicker";
 import TextInput from "../UI/TextInput";
 
-const Description = ({ handleDescription }) => {
-  const [photoDate, setPhotoDate] = useState("");
-  const [itemTitle, setItemTitle] = useState("");
-  const [itemNumber, setItemNumber] = useState("");
-  const [note, setNote] = useState("");
+const Description = ({ cardIndex, title, number, note }) => {
+  const { updateCard } = useContext(CardListContext);
 
   const handleDisplayDate = (displayDate) => {
-    setPhotoDate(displayDate);
+    handleUpdateCard("date", displayDate);
   };
-
-  useEffect(() => {
-    handleDescription({
-      date: photoDate,
-      title: itemTitle,
-      number: itemNumber,
-      note: note,
-    });
-  }, [photoDate, itemTitle, itemNumber, note]);
+  const handleUpdateCard = (key, value) => {
+    updateCard(cardIndex, { [key]: value });
+  };
 
   return (
     <div className="w-full md:p-3">
@@ -28,19 +20,22 @@ const Description = ({ handleDescription }) => {
         id="item-title"
         name="item-title"
         placeholder="工程項目(不能超過56個字)"
-        onChange={(e) => setItemTitle(e.target.value)}
+        value={title}
+        onChange={(e) => handleUpdateCard("title", e.target.value)}
       />
       <TextInput
         id="item-number"
         name="item-number"
         placeholder="契約項次"
-        onChange={(e) => setItemNumber(e.target.value)}
+        value={number}
+        onChange={(e) => handleUpdateCard("number", e.target.value)}
       />
       <TextInput
         id="note"
         name="note"
         placeholder="說明(不能超過56個字)"
-        onChange={(e) => setNote(e.target.value)}
+        value={note}
+        onChange={(e) => handleUpdateCard("note", e.target.value)}
       />
     </div>
   );

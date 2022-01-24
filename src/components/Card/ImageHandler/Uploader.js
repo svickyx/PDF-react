@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import uploadIcon from "../../asset/logo/circle-arrow-up-solid.svg";
+import uploadIcon from "../../../asset/logo/circle-arrow-up-solid.svg";
 
 const Uploader = ({ handleUploadedFile }) => {
   const uploaderRef = useRef();

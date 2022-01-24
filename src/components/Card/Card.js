@@ -1,36 +1,27 @@
-import React, { useState } from "react";
-import ImageContainer from "./ImageContainer";
-import Uploader from "./Uploader";
+import React, { useEffect, useState, useCallback, useContext } from "react";
 import Description from "./Description";
 import Button from "../UI/Button";
 
 import closeIcon from "../../asset/logo/circle-xmark-regular.svg";
+import ImageHandler from "./ImageHandler/ImageHandler";
+import { CardListContext } from "../../store/CardListContext";
 
-const Card = () => {
-  const [file, setFile] = useState();
-  //   const [cardContent, setCardContent] = useState({
-  //     image: "",
-  //     date: "",
-  //     title: "",
-  //     number: "",
-  //     note: "",
-  //   });
-
-  const handleDeleteFile = () => {
-    setFile();
-  };
-
-  const handleCardImageUrl = (previewUrl) => {
-    console.log(previewUrl);
-  };
-  const handleDescription = (description) => {
-    console.log(description);
-  };
-
+const Card = ({
+  image,
+  date,
+  title,
+  number,
+  note,
+  cardIndex,
+  addNewCard,
+  isLast,
+  deleteOrResetCard,
+}) => {
   return (
-    <div className="rounded-md bg-white py-4 px-4 flex flex-col">
+    <div className="rounded-md bg-white py-4 px-4 flex flex-col mb-3">
       <div className="flex justify-end mb-2">
         <img
+          onClick={() => deleteOrResetCard(cardIndex)}
           className="cursor-pointer"
           src={closeIcon}
           alt="close-icon"
@@ -39,19 +30,13 @@ const Card = () => {
         />
       </div>
       <div className="md:flex justify-between items-center">
-        {file ? (
-          <ImageContainer
-            fileFromUploader={file}
-            handleDeleteFile={handleDeleteFile}
-            handleCardImageUrl={handleCardImageUrl}
-          />
-        ) : (
-          <Uploader handleUploadedFile={setFile} />
-        )}
-        <Description handleDescription={handleDescription} />
+        <ImageHandler cardIndex={cardIndex} image={image} />
+        <Description cardIndex={cardIndex} {...{ date, title, number, note }} />
       </div>
       <div className="flex justify-end">
-        <Button>新增</Button>
+        <Button onClick={() => addNewCard(cardIndex)}>
+          {isLast ? "新增" : "insert"}
+        </Button>
       </div>
     </div>
   );
