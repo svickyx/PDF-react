@@ -1,10 +1,9 @@
-import React, { useEffect, useState, useCallback, useContext } from "react";
+import React from "react";
 import Description from "./Description";
 import Button from "../UI/Button";
 
 import closeIcon from "../../asset/logo/circle-xmark-regular.svg";
 import ImageHandler from "./ImageHandler/ImageHandler";
-import { CardListContext } from "../../store/CardListContext";
 
 const Card = ({
   image,
@@ -35,7 +34,7 @@ const Card = ({
       </div>
       <div className="flex justify-end">
         <Button onClick={() => addNewCard(cardIndex)}>
-          {isLast ? "新增" : "insert"}
+          {isLast ? "新增" : "插入"}
         </Button>
       </div>
     </div>

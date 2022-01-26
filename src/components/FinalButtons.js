@@ -1,9 +1,38 @@
-export default function FinalButtons() {
+import { useContext } from "react";
+import { CardListContext } from "../store/CardListContext";
+
+const FinalButtons = ({ setCardListForPdf, setCardListForExcel }) => {
+  const { cardList } = useContext(CardListContext);
+  const handleSetFinal = () => {
+    let pdfCardList = [...cardList];
+    let excelCardList = [...cardList];
+    setCardListForExcel(excelCardList);
+    if (cardList.length % 3 !== 0) {
+      const remain = cardList.length % 3;
+      for (let i = 0; i < 3 - remain; i++) {
+        pdfCardList.push({
+          id: new Date().getTime() + `${i}`,
+          image: "",
+          date: "",
+          title: "",
+          number: "",
+          note: "",
+        });
+      }
+    }
+    return setCardListForPdf(pdfCardList);
+  };
+
   return (
-    <div className="self-center">
-      <button className="h-[30px] border-none bg-green-600 text-white py-0 px-3 mr-1 mt-2 rounded-lg cursor-pointer">
+    <div className="flex justify-center">
+      <button
+        onClick={handleSetFinal}
+        className="h-[30px] border-none bg-green-600 text-white py-0 px-3 rounded-lg cursor-pointer"
+      >
         完成編輯
       </button>
     </div>
   );
-}
+};
+
+export default FinalButtons;

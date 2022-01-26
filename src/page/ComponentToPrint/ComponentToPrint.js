@@ -42,10 +42,19 @@ const styles = StyleSheet.create({
     fontSize: 12,
     letterSpacing: 1.5,
   },
+  pageNumber: {
+    position: "absolute",
+    fontSize: 10,
+    bottom: 30,
+    left: 0,
+    right: 0,
+    textAlign: "center",
+    color: "grey",
+  },
   projectName: { fontSize: 14, marginBottom: "2%", textAlign: "left" },
   projectContentText: {
     textAlign: "left",
-    whiteSpace: "normal ",
+    whiteSpace: "normal",
   },
   projectDescription: { width: "100%", height: "30%", padding: "1%" },
   projectCate: {
@@ -57,7 +66,7 @@ const styles = StyleSheet.create({
 });
 
 // create one photo div
-const PhotoDiv = ({ title, imagesUrl, date, note, number }) => {
+const PhotoDiv = ({ id, title, image, date, note, number }) => {
   return (
     <View
       style={{
@@ -78,9 +87,7 @@ const PhotoDiv = ({ title, imagesUrl, date, note, number }) => {
           width: "65%",
         }}
       >
-        {imagesUrl ? (
-          <Image style={{ objectFit: "contain" }} src={imagesUrl} />
-        ) : null}
+        {image ? <Image style={{ objectFit: "contain" }} src={image} /> : null}
       </View>
       <View
         style={{
@@ -132,65 +139,84 @@ const PhotoDiv = ({ title, imagesUrl, date, note, number }) => {
   );
 };
 
-// Create Document Component
-const ComponentToPrint = ({
-  projectInfo,
-  imagesUrls,
-  completedDescriptions,
-}) => {
+const SinglePage = ({ projectInfo, cardForThree }) => {
   return (
-    <Document file="image.pdf">
-      <Page size="A4" style={styles.page}>
-        <View style={{ marginBottom: "2%" }}>
-          <Text
-            style={{
-              textAlign: "center",
-              marginBottom: "3%",
-              fontSize: 30,
-            }}
-          >
-            施工照片
-          </Text>
-          <Text style={styles.projectName}>
-            工程名稱 : {projectInfo.projectName}
-          </Text>
-          <Text style={styles.projectName}>
-            監造單位 : {projectInfo.designer}
-          </Text>
-          <View
-            style={{
-              display: "inline-flex",
-              flexDirection: "row",
-              justifyContent: "space-between",
-            }}
-          >
-            <Text style={{ fontSize: 14, textAlign: "left" }}>
-              施工承商 : 和碁營造股份有限公司
-            </Text>
-          </View>
-        </View>
-        <View
+    <Page size="A4" style={styles.page}>
+      <View style={{ marginBottom: "2%" }}>
+        <Text
           style={{
-            display: "flex",
-            flexDirection: "column",
-            width: "100%",
-            border: BORDER_COLOR,
-            borderTop: "none",
-            flex: 1,
+            textAlign: "center",
+            marginBottom: "3%",
+            fontSize: 30,
           }}
         >
-          {completedDescriptions.map(({ title, number, note, date }, i) => (
-            <PhotoDiv
-              key={"pp" + i}
-              title={title}
-              imagesUrl={imagesUrls[i]}
-              date={date}
-              number={number}
-              note={note}
-            />
-          ))}
+          施工照片
+        </Text>
+        <Text style={styles.projectName}>
+          工程名稱 : {projectInfo.projectName}
+        </Text>
+        <Text style={styles.projectName}>
+          監造單位 : {projectInfo.designer}
+        </Text>
+        <View
+          style={{
+            display: "inline-flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+          }}
+        >
+          <Text style={{ fontSize: 14, textAlign: "left" }}>
+            施工承商 : 和碁營造股份有限公司
+          </Text>
         </View>
-      </Page>
+      </View>
+      <View
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          width: "100%",
+          border: BORDER_COLOR,
+          borderTop: "none",
+          flex: 1,
+        }}
+      >
+        {cardForThree.map(({ id, image, title, number, note, date }) => (
+          <PhotoDiv
+            key={id}
+            title={title}
+            image={image}
+            date={date}
+            number={number}
+            note={note}
+          />
+        ))}
+      </View>
+      <Text
+        style={styles.pageNumber}
+        render={({ pageNumber, totalPages }) => `${pageNumber} / ${totalPages}`}
+        fixed
+      />
+    </Page>
+  );
+};
+
+// Create Document Component
+const ComponentToPrint = ({ projectInfo, cardListForPdf }) => {
+  let resortCards = [];
+  while (cardListForPdf.length >= 3) {
+    const batchArr = cardListForPdf.splice(0, 3);
+    resortCards.push(batchArr);
+  }
+
+  return (
+    <Document file="image.pdf">
+      {resortCards.map((batch, i) => (
+        <SinglePage
+          projectInfo={projectInfo}
+          key={"batch" + i}
+          cardForThree={batch}
+        />
+      ))}
     </Document>
   );
 };

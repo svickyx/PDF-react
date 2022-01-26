@@ -1,9 +1,6 @@
-import { useState, useEffect } from "react";
 import deleteIcon from "../../../asset/logo/trash-solid.svg";
 
 const ImageContainer = ({ handleDeleteFile, previewUrl }) => {
-  //read file from uploader to url, and set it to previewUrl
-
   return (
     <div className="w-full h-max-[350px] relative">
       <div

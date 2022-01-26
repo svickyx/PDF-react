@@ -2,11 +2,7 @@ import Excel from "exceljs";
 import { useState, useEffect } from "react";
 import format from "../../asset/format.xlsx";
 
-const ComponentToExcel = ({
-  projectInfo,
-  completedDescriptions,
-  imagesUrls,
-}) => {
+const ComponentToExcel = ({ projectInfo, cardListForExcel }) => {
   const [workbook, setWorkbook] = useState(null);
 
   const getBase64FromUrl = async (url) => {
@@ -40,8 +36,14 @@ const ComponentToExcel = ({
       worksheet.getCell("A5").value = `工程名稱：${projectName}`;
       worksheet.getCell("A6").value = `監造單位：${designer}`;
 
-      for (let i = 0; i < completedDescriptions.length; i++) {
-        let { date, number, title, note } = completedDescriptions[i];
+      for (let i = 0; i < cardListForExcel.length; i++) {
+        let { date, number, title, note } = cardListForExcel[i];
+        // if (i > 2) {
+        //   worksheet.getCell(`B${9 + i * 4}`)= worksheet.getCell('B9');
+        //   worksheet.getCell(`B${10 + i * 4}`)= worksheet.getCell(`B10`);
+        //   worksheet.getCell(`B${11 + i * 4}`)= worksheet.getCell(`B11`);
+        //   worksheet.getCell(`B${12 + i * 4}`)= worksheet.getCell(`B12`);
+        // }
 
         worksheet.getCell(`B${9 + i * 4}`).value = `拍攝時間: ${date}`;
         worksheet.getCell(`B${10 + i * 4}`).value = `契約項次： ${number}`;
@@ -49,7 +51,8 @@ const ComponentToExcel = ({
         worksheet.getCell(`B${12 + i * 4}`).value = `說明： ${note}`;
       }
 
-      const imagePromises = imagesUrls.map((url) => {
+      const imageUrls = cardListForExcel.map((card) => card.image);
+      const imagePromises = imageUrls.map((url) => {
         return getBase64FromUrl(url);
       });
 
@@ -63,7 +66,7 @@ const ComponentToExcel = ({
         });
       });
     }
-  }, [projectInfo, completedDescriptions, workbook]);
+  }, [projectInfo, cardListForExcel, workbook]);
 
   async function download() {
     const buffer = await workbook.xlsx.writeBuffer();
@@ -77,7 +80,7 @@ const ComponentToExcel = ({
   return (
     <div>
       <button
-        style={{ marginTop: "5px", padding: "5px 6px" }}
+        className="h-[30px] border-none bg-green-600 text-white py-0 px-3 rounded-lg cursor-pointer"
         onClick={download}
       >
         點擊這裡下載Excel
