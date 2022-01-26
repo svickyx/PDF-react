@@ -6,7 +6,6 @@ const FinalButtons = ({ setCardListForPdf, setCardListForExcel }) => {
   const handleSetFinal = () => {
     let pdfCardList = [...cardList];
     let excelCardList = [...cardList];
-    setCardListForExcel(excelCardList);
     if (cardList.length % 3 !== 0) {
       const remain = cardList.length % 3;
       for (let i = 0; i < 3 - remain; i++) {
@@ -20,7 +19,11 @@ const FinalButtons = ({ setCardListForPdf, setCardListForExcel }) => {
         });
       }
     }
-    return setCardListForPdf(pdfCardList);
+
+    setCardListForExcel(excelCardList);
+    setCardListForPdf(pdfCardList);
+    // localStorage.removeItem("cardList");
+    return;
   };
 
   return (

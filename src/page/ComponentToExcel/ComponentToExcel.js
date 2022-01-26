@@ -49,13 +49,14 @@ const ComponentToExcel = ({ projectInfo, cardListForExcel }) => {
       for (let i = 0; i < cardListForExcel.length; i++) {
         const worksheet = workbook.getWorksheet("施工照片");
         let { date, number, title, note } = cardListForExcel[i];
-
-        worksheet.mergeCells(`A${9 + i * 4}:A${12 + i * 4}`);
-        worksheet.getCell(`A${9 + i * 4}:A${12 + i * 4}`).style = {
-          ...imageCellStyle,
-        };
-        worksheet.getCell(`A${9 + i * 4}:A${12 + i * 4}`)._row.height =
-          imageCellHeight;
+        if (i > 2) {
+          worksheet.mergeCells(`A${9 + i * 4}:A${12 + i * 4}`);
+        }
+        // worksheet.getCell(`A${9 + i * 4}:A${12 + i * 4}`).style = {
+        //   ...imageCellStyle,
+        // };
+        // worksheet.getCell(`A${9 + i * 4}:A${12 + i * 4}`)._row.height =
+        //   imageCellHeight;
 
         worksheet.getCell(`B${9 + i * 4}`).style = { ...cell9Style };
         worksheet.getCell(`B${9 + i * 4}`).value = `拍攝時間: ${date}`;

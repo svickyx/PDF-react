@@ -32,7 +32,11 @@ export const CardListContextProvider = ({ children }) => {
   }, []);
   useEffect(() => {
     if (doneInit && cardList && cardList.length) {
-      localStorage.setItem("cardList", JSON.stringify(cardList));
+      const cardlistWithoutImage = cardList.map((props) => ({
+        ...props,
+        image: "",
+      }));
+      localStorage.setItem("cardList", JSON.stringify(cardlistWithoutImage));
     }
   }, [cardList, doneInit]);
 
