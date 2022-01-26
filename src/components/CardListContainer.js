@@ -5,6 +5,7 @@ import Card from "./Card/Card";
 const CardListContainer = () => {
   const { cardList, addNewCard, deleteOrResetCard } =
     useContext(CardListContext);
+  console.log(cardList);
   return (
     <div>
       {cardList.map((props, i) => (

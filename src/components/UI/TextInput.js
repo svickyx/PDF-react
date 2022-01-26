@@ -1,4 +1,4 @@
-export default function TextInput({ placeholder, id, name, onChange }) {
+export default function TextInput({ placeholder, value, id, name, onChange }) {
   return (
     <div>
       <input
@@ -7,6 +7,7 @@ export default function TextInput({ placeholder, id, name, onChange }) {
         placeholder={placeholder}
         id={id}
         name={name}
+        value={value}
         onChange={onChange}
       />
       <hr className="border-none" />

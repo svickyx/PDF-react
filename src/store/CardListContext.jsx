@@ -1,4 +1,4 @@
-import { createContext, useCallback, useState } from "react";
+import { createContext, useCallback, useEffect, useState } from "react";
 
 export const CardListContext = createContext({
   cardList: [],
@@ -18,6 +18,23 @@ export const CardListContextProvider = ({ children }) => {
       note: "",
     },
   ]);
+  const [doneInit, setDoneInit] = useState(false);
+
+  useEffect(() => {
+    const cardListInLocalstorage = localStorage.getItem("cardList");
+    if (cardListInLocalstorage) {
+      const cached = JSON.parse(cardListInLocalstorage);
+      if (cached.length) {
+        setCardList(cached);
+      }
+    }
+    setDoneInit(true);
+  }, []);
+  useEffect(() => {
+    if (doneInit && cardList && cardList.length) {
+      localStorage.setItem("cardList", JSON.stringify(cardList));
+    }
+  }, [cardList, doneInit]);
 
   const updateCard = useCallback((i, toUpdate) => {
     setCardList((pre) => {
