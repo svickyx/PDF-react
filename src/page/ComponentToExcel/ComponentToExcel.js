@@ -38,12 +38,42 @@ const ComponentToExcel = ({ projectInfo, cardListForExcel }) => {
 
       for (let i = 0; i < cardListForExcel.length; i++) {
         let { date, number, title, note } = cardListForExcel[i];
-        // if (i > 2) {
-        //   worksheet.getCell(`B${9 + i * 4}`)= worksheet.getCell('B9');
-        //   worksheet.getCell(`B${10 + i * 4}`)= worksheet.getCell(`B10`);
-        //   worksheet.getCell(`B${11 + i * 4}`)= worksheet.getCell(`B11`);
-        //   worksheet.getCell(`B${12 + i * 4}`)= worksheet.getCell(`B12`);
-        // }
+        if (i > 2) {
+          let dateValue = [];
+          dateValue[2] = `拍攝時間: ${date}`;
+          let numberValue = [];
+          numberValue[2] = `拍攝時間: ${number}`;
+          let titleValue = [];
+          titleValue[2] = `拍攝時間: ${title}`;
+          let noteValue = [];
+          noteValue[2] = `拍攝時間: ${note}`;
+          const insertedRowForDate = worksheet.insertRow(
+            `${13 + (i - 1) * 4}`,
+            dateValue,
+            "i"
+          );
+          const insertedRowForNumber = worksheet.insertRow(
+            `${14 + (i - 1) * 4}`,
+            numberValue,
+            "i"
+          );
+          const insertedRowForTitle = worksheet.insertRow(
+            `${15 + (i - 1) * 4}`,
+            titleValue,
+            "i"
+          );
+          const insertedRowForNote = worksheet.insertRow(
+            `${16 + (i - 1) * 4}`,
+            noteValue,
+            "i"
+          );
+          console.log(insertedRowForDate);
+
+          // worksheet.getCell(`B${9 + i * 4}`).value = insertedRowForDate;
+          // worksheet.getCell(`B${10 + i * 4}`).value = insertedRowForNumber;
+          // worksheet.getCell(`B${11 + i * 4}`).value = insertedRowForTitle;
+          // worksheet.getCell(`B${12 + i * 4}`).value = insertedRowForNote;
+        }
 
         worksheet.getCell(`B${9 + i * 4}`).value = `拍攝時間: ${date}`;
         worksheet.getCell(`B${10 + i * 4}`).value = `契約項次： ${number}`;
