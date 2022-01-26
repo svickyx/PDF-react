@@ -3,7 +3,7 @@ import { CardListContext } from "../../store/CardListContext";
 import CustomDatePicker from "../UI/CustomDatePicker";
 import TextInput from "../UI/TextInput";
 
-const Description = ({ cardIndex, title, number, note }) => {
+const Description = ({ cardIndex, title, number, note, date }) => {
   const { updateCard } = useContext(CardListContext);
 
   const handleDisplayDate = (displayDate) => {
@@ -12,10 +12,9 @@ const Description = ({ cardIndex, title, number, note }) => {
   const handleUpdateCard = (key, value) => {
     updateCard(cardIndex, { [key]: value });
   };
-
   return (
     <div className="w-full md:p-3">
-      <CustomDatePicker handleDisplayDate={handleDisplayDate} />
+      <CustomDatePicker date={date} handleDisplayDate={handleDisplayDate} />
       <TextInput
         id="item-title"
         name="item-title"
