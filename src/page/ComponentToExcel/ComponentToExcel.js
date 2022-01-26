@@ -44,12 +44,6 @@ const ComponentToExcel = ({ projectInfo, cardListForExcel }) => {
         worksheet.getCell(`B${10 + i * 4}`).value = `契約項次： ${number}`;
         worksheet.getCell(`B${11 + i * 4}`).value = `工程項目： ${title}`;
         worksheet.getCell(`B${12 + i * 4}`).value = `說明： ${note}`;
-        if (i > 2) {
-          worksheet.getCell(`B${9 + i * 4}`).value = {
-            sharedFormula: "B9",
-            result: `拍攝時間: ${date}`,
-          };
-        }
       }
 
       const imageUrls = cardListForExcel.map((card) => card.image);
