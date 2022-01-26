@@ -43,18 +43,26 @@ const ComponentToExcel = ({ projectInfo, cardListForExcel }) => {
       const cell10Height = worksheet.getCell(`B10`)._row.height;
       const cell11Height = worksheet.getCell(`B11`)._row.height;
       const cell12Height = worksheet.getCell(`B12`)._row.height;
-      const imageCellStyle = worksheet.getCell(`A9:A12`).style;
-      const imageCellHeight =
-        cell9Height + cell10Height + cell11Height + cell12Height;
+
       for (let i = 0; i < cardListForExcel.length; i++) {
         const worksheet = workbook.getWorksheet("施工照片");
         let { date, number, title, note } = cardListForExcel[i];
         if (i > 2) {
           worksheet.mergeCells(`A${9 + i * 4}:A${12 + i * 4}`);
+
+          worksheet.getCell(`A${9 + i * 4}:A${12 + i * 4}`).border = {
+            top: { style: "thin" },
+            left: { style: "thin" },
+            bottom: { style: "thin" },
+            right: { style: "thin" },
+          };
+
+          // worksheet.getCell(`A${9 + i * 4}:A${12 + i * 4}`).style = {
+          //   ...imageCellStyle,
+          // };
+          // worksheet.getCell(`A${9 + i * 4}:A${12 + i * 4}`)._mergeCount = 3;
         }
-        // worksheet.getCell(`A${9 + i * 4}:A${12 + i * 4}`).style = {
-        //   ...imageCellStyle,
-        // };
+
         // worksheet.getCell(`A${9 + i * 4}:A${12 + i * 4}`)._row.height =
         //   imageCellHeight;
 

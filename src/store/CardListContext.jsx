@@ -31,13 +31,17 @@ export const CardListContextProvider = ({ children }) => {
     setDoneInit(true);
   }, []);
   useEffect(() => {
+    let timetag;
     if (doneInit && cardList && cardList.length) {
-      const cardlistWithoutImage = cardList.map((props) => ({
-        ...props,
-        image: "",
-      }));
-      localStorage.setItem("cardList", JSON.stringify(cardlistWithoutImage));
+      timetag = setTimeout(() => {
+        const cardlistWithoutImage = cardList.map((props) => ({
+          ...props,
+          image: "",
+        }));
+        localStorage.setItem("cardList", JSON.stringify(cardlistWithoutImage));
+      }, 800);
     }
+    return () => clearTimeout(timetag);
   }, [cardList, doneInit]);
 
   const updateCard = useCallback((i, toUpdate) => {

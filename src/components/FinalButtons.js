@@ -22,7 +22,8 @@ const FinalButtons = ({ setCardListForPdf, setCardListForExcel }) => {
 
     setCardListForExcel(excelCardList);
     setCardListForPdf(pdfCardList);
-    // localStorage.removeItem("cardList");
+    localStorage.removeItem("cardList");
+    localStorage.removeItem("projectInfo");
     return;
   };
 

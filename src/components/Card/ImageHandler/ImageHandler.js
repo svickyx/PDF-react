@@ -11,7 +11,6 @@ const ImageHandler = ({ cardIndex, image }) => {
       image: imageUrl,
     });
   };
-  console.log(file);
   useEffect(() => {
     if (!file || image) {
       return;
